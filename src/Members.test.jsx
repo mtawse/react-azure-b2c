@@ -11,11 +11,15 @@ configure({ adapter: new Adapter() });
 
 jest.mock('./user');
 
+beforeEach(() => {
+    jest.clearAllMocks();
+});
+
 it('renders data fetched in a hook', async () => {
-    user.getUser.mockResolvedValue(Promise.resolve({ name: "Martin Tawse" }));
+    user.getUser.mockResolvedValue({ name: "Martin Tawse" });
     const wrapper = mount(<Members />);
     await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 0));
+        await new Promise((resolve) => setTimeout(resolve, 0));
     });
     wrapper.update();
     expect(wrapper.find(Header).text()).toContain("Martin Tawse");
