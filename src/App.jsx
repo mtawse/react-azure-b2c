@@ -5,13 +5,14 @@ import Guest from './Guest'
 import Members from './Members'
 import Logout from './Logout';
 import { authProvider } from './authProvider';
+import { basicReduxStore } from './reduxStore';
 
 const App = () => {
   return (
   <Router>
     <Switch>
         <Route exact path="/" component={Guest} />
-        <Route exact path="/members" component={withAuthentication(Members, {provider: authProvider})} />
+        <Route exact path="/members" component={withAuthentication(Members, {provider: authProvider, reduxStore: basicReduxStore})} />
         <Route exact path="/logout" component={Logout} />
     </Switch>
   </Router>

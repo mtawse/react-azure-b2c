@@ -12,6 +12,7 @@ const getUser = async () => {
 };
 
 const user = {
+  setUser,
   getUser,
 };
 
